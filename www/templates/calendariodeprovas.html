@@ -1,0 +1,55 @@
+<a class="logout" href="{{url}}"> <img src="img/logout.png"/></a>
+<ion-view title="" hide-back-button="true">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left"class="button button-icon icon ion-navicon"></button>
+        <div class="button button-clear hdr-logo"><img src='img/logompr_v2.png'/></div>
+        <div class="button button-clear tit_logado">{{nomeUsuario}}</div>
+    </ion-nav-buttons>
+    <ion-content class="has-header calendario">
+        <div class="header-flat">
+            <a href="javascript:history.back(1)" class="voltar"><img src="img/flat-design/icons/arrow-left.png"> </a>
+            <div class="titulo">
+                <img src="img/flat-design/icons/icon-calendar.png" class="icon-img"> 
+        <h1>Datas de Provas</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="cow">
+                <div class="item item-input item-select">
+                    <select ng-model="myMonth">
+                        <option ng-selected="selected">Todos</option>
+                        <option ng-repeat="meses in dataarray"  onclick="verifica();">{{meses.mes}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="cow">
+                <div class="item item-input item-select">
+                    <select ng-model="myMod"  onchange="verificaItem()">
+                        <option selected>Todas</option>
+                        <option ng-repeat="mod in modalidadesarray">{{mod.modalidadesarray}}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="naohaprovas">
+            <div class="list">
+                <div class="item">
+                    <h2> Não há provas</h2>
+                </div>
+            </div>
+        </div>
+        <div class="listaprovas" ng-repeat="prova in provas">
+            <!-- <div data-ng-repeat="item in prova | orderBy:[mes]" ng-if="(myMonth === item.mes+'/'+item.ano || myMonth === 'Todos') && (myMod === item.modalidade || myMod === 'Todas')" class="itensprovas"> -->
+                <div class="list">
+                    <div class="item">
+                    <h2>{{tratarData(prova.prova_data)}} - {{prova.prova_nome}}</h2>
+                        <!-- <h2> {{item.dia}}/{{item.mes}} - {{item.nome}}</h2> -->
+                        <!-- <span>{{item.local}} - {{item.distancia}}</span> -->
+                        <p> </p>
+                        <span>{{prova.prova_local}} - {{prova.prova_distancia}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

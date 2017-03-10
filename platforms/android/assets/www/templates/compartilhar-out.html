@@ -1,0 +1,26 @@
+<div class="bar bar-header crono">
+<a href="#/app/inicio" class="button button-clear ion-chevron-left" style="font-size:1.6em; color:#ebb42f; width:35px;"></a>
+    <div class="headerComp">COMPARTILHAR</div>
+</div>
+<ion-view title="" hide-back-button="true">
+<ion-nav-buttons side="left" class="cronometroNav">
+<button menu-toggle="left"class="button button-icon icon ion-navicon"></button>
+<div class="button button-clear hdr-logo"><img src='img/logompr_v2.png'/></div>
+<div class="button button-clear tit_logado">{{usuario}}</div>
+</ion-nav-buttons>
+
+<ion-content class="has-header compartilhar">
+    <div class="print"><img ng-src='{{printEnd.path}}'></div>
+    <form action="">
+        <textarea placeholder="Escrever comentário" class="comentario"></textarea>
+        <div class="compbtn">
+        <div id="ck-button" ng-click="$scope.ficon = !$scope.ficon" class="compbtnOut" style="width:100%;">
+           <label>
+          <input type="checkbox" value="facebook" class="ckBox"><img src="img/icon_face.png" class="sharebtn" ng-show="!ficon"><img src="img/icon_face_yellow.png" class="sharebtn" ng-show="ficon"><span ng-class="{Yicon: ficon}"> Facebook</span>
+           </label>
+        </div>
+        </div>
+        <button class="button button-block button-positive btn-enviar btn-compartilhar" type="submit" ng-click="confirmaCompartilhamento()">Enviar</button>
+    </form>
+</ion-content>
+</ion-view>

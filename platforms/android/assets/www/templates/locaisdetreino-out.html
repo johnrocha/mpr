@@ -1,0 +1,48 @@
+<ion-view title="" hide-back-button="true">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+        <div class="button button-clear hdr-logo"><img src='img/logompr_v2.png' /></div>
+    </ion-nav-buttons>
+    <ion-content class="has-header treino locais">
+        <div class="header-flat">
+            <a href="javascript:history.back(1)" class="voltar"><img src="img/flat-design/icons/arrow-left.png"></a>
+            <div class="titulo">
+                <img src="img/flat-design/icons/icon-pin.png" class="icon-img">
+                <h1>Locais de treino</h1>
+            </div>
+        </div>
+        <div class="locaisFilterCont">
+            <div class="item item-input item-select">
+                <select ng-model="selectedProf" ng-options="p as p.user_name for p in professores">
+                </select>
+            </div>
+            <div class="item item-input item-select">
+                <select ng-model="selectedMod" ng-options="m as m.modalidade_nome for m in modalidades">
+                </select>
+            </div>
+        </div>
+        <div class="list locaisTreino">
+            <div class="naotreinos" ng-show="showDias(locaisTreinos,selectedProf,selectedMod)">
+                Não há treinos disponíveis
+            </div>
+            <div ng-repeat="local in locaisTreinos | vazio">
+                <div ng-class="{localDiaAct:selectedProf.user_id || selectedMod.modalidade_id, localDia:!selectedProf.user_id && !selectedMod.modalidade_id}" ng-show="showDia(local.treinos,selectedProf,selectedMod)">
+                    {{local.dia}}
+                </div>
+                <div class="localDados" ng-repeat="l in local.treinos | professor:selectedProf | modalidade:selectedMod | orderBy:'treino.horarioInicio'">
+                    <div class="localHora">
+                        {{l.treino.horarioInicio}}
+                    </div>
+                    <div class="localLocal">
+                        {{l.local.local_nome}}
+                    </div>
+                    <div class="localMod">
+                        {{l.modalidade.modalidade_nome}}
+                    </div>
+                    <div class="localInfo" ui-sref="javascript:void(0)" ng-click="zoomTreino(l,local.dia)">+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,54 @@
+<a class="logout" href="http://{{url}}"><img src="img/logout.png"/></a>
+<ion-view title="<img src='img/flat-design/logos/logo-out.png'/>" hide-back-button="true">
+    <ion-nav-buttons side="left"><button menu-toggle="left" class="button button-icon icon ion-navicon"></button></ion-nav-buttons>
+    <ion-content class="has-header paginas">
+        <div class="header-flat">
+            <a href="javascript:history.back(1)" class="voltar"><img src='img/flat-design/icons/arrow-left.png'/></a>
+            <div class="titulo">
+                <img src='img/flat-design/icons/icon-pin.png' class="icon-img"/> 
+                <h1>{{selectedTreino.local.local_nome}}</h1>
+            </div>
+        </div>
+        <div class="fotolocal">
+            <img ng-src="http://mpr.mobint.com.br/{{selectedTreino.local.local_foto}}"/>
+            <span class="layeralpha">{{selectedTreino.local.local_endereco}}</span>
+        </div>
+        <div class="repeticao">
+            <div class="destaque"><h4>Detalhes</h4></div>
+                <div class="horarios">
+                  <div class="detalhes">
+                      <span class="detalhesTitle">Treino:</span>{{selectedTreino.modalidade.modalidade_nome}}
+                  </div>
+                   <div>
+                        <ul>
+                            <li ng-repeat="d in selectedTreino.treino.datas | dia:selectedData">
+                            <div class="detalhes">
+                                <span class="detalhesTitle">Horário:</span>{{d.name}} -  {{selectedTreino.treino.horarioInicio}} às {{selectedTreino.treino.horarioFim}}
+                            </div>
+                            <div class="detalhes">
+                                <span class="detalhesTitle">Professores:</span>
+                                <ul>
+                                <li ng-repeat="p in selectedTreino.treino.professores">{{p.user_name}}</li>
+                                </ul>
+                            </div>
+                            </li>
+                        <!--<n ng-if="modalidade.lm_segunda !== ''"><li><span>SEGUNDA</span><n>{{modalidade.lm_segunda.replace(regex,'\r\n')}}</n></li></n>
+                        <n ng-if="modalidade.lm_terca !== ''"><li><span>TERÇA</span><n>{{modalidade.lm_terca.replace(regex,'\r\n')}}</n></li></n>
+                        <n ng-if="modalidade.lm_quarta !== ''"><li><span>QUARTA</span><n>{{modalidade.lm_quarta.replace(regex,'\r\n')}}</n></li></n>            
+                        <n ng-if="modalidade.lm_quinta !== ''"><li><span>QUINTA</span><n>{{modalidade.lm_quinta.replace(regex,'\r\n')}}</n></li></n>
+                        <n ng-if="modalidade.lm_sexta !== ''"><li><span>SEXTA</span><n>{{modalidade.lm_sexta.replace(regex,'\r\n')}}</n></li></n>
+                        <n ng-if="modalidade.lm_sabado !== ''"><li><span>SÁBADO</span><n>{{modalidade.lm_sabado.replace(regex,'\r\n')}}</n></li></n>
+                        <n ng-if="modalidade.lm_domingo !== ''"><li><span>DOMINGO</span><n>{{modalidade.lm_domingo.replace(regex,'\r\n')}}</n></li></n>
+                        <n ng-if="locais.local_nome === ''"><li><n>Não há treinos previstos</n></li></n-->
+                    </ul>
+                   </div>
+                </div>
+        </div>
+        <div class="localizacao">
+            <div class="destaque"><h4>Localização</h4></div>
+            <div id="gmaps-api"><div id="map-canvas"></div></div>
+        </div>
+    <!-- <div class="fundoloc"></div> -->
+    <!-- <div class="comochegar"><h3><a href="https://www.google.com.br/maps/search/maps/@{{locais.local_latitude}},{{locais.local_longitude}},10z/data=!3m1!4b1">Como chegar</a></h3></div> -->
+    </ion-content>
+</ion-view>

@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "894515675869",
+    "firebase_url": "https://mpranalytics-c43c9.firebaseio.com",
+    "project_id": "mpranalytics-c43c9",
+    "storage_bucket": "mpranalytics-c43c9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:894515675869:android:f816068d9fb875e8",
+        "android_client_info": {
+          "package_name": "com.mobint.mprapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "894515675869-nfved0hbpqo2nkpa9rmh92kn4mdfk167.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDKwrpWt_W0N7vCHBF0w3C7CbtBojhNRK0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,95 @@
+<a class="logout" href="{{url}}"> <img src="img/logout.png"/></a>
+<ion-view title="" hide-back-button="true">
+<ion-nav-buttons side="left">
+<button menu-toggle="left"class="button button-icon icon ion-navicon"></button>
+<div class="button button-clear hdr-logo"><img src='img/logompr_v2.png'/></div>
+<div class="button button-clear tit_logado">{{nomeUsuario}}</div>
+</ion-nav-buttons>
+<ion-content class="has-header planilha">
+<div class="header-flat">
+    <a href="javascript:history.back(1)" class="voltar"><img src='img/flat-design/icons/arrow-left.png'/> </a>
+    <div class="titulo">
+        <img src='img/flat-design/icons/icon-planilha-interna.png' class="icon-img"/> 
+        <h1>Planilha</h1>
+    </div>
+</div>
+
+
+
+
+<!--  <a href="" ng-click="show3=true; show=false; show2=false">outro</a>  -->
+
+
+<div class="paginasPlanilha">  <a href="" ng-click="show=false; show2=true" ng-class="{'active':show2}">{{PrimeiroDiaPlanilhaAnterior}} - {{UltimoDiaPlanilhaAnterior}}</a>  <a href="" ng-click="show=true; show2=false"  ng-class="{'active':show}">{{PrimeiroDiaPlanilhaAtual}} - {{UltimoDiaPlanilhaAtual}}</a></div>
+
+<ion-slide-box on-slide-changed="slideHasChanged($index)" ng-if="show">
+<ion-slide ng-repeat="semana in semanas">
+<div class="arrows">
+    <span data-ng-show="$index > 0" ng-click="previousSlide()"><img src='img/left-white.png' class="left"/></span>
+    <span data-ng-show="$index < 3" ng-click="nextSlide()"><img src='img/right.png' class="right"/></span>
+</div>
+<h3>Semana {{$index+1}}</h3>
+<ion-list>
+<div ng-repeat="dia in semana" class="{{dia.ativar}}">
+    <n ng-if="dia.ativar === 'dia'">
+        <ion-item id="{{$index}}" class="item-stable" ng-click="toggleGroup(dia)" ng-class="{active: isGroupShown(dia)}" class="false" onClick="abrir(this.id)">
+        <i class="icon" ng-class="isGroupShown(dia) ? 'ion-minus' : 'ion-chevron-down'"></i>&nbsp;
+        {{dia.name}} - {{dia.data}}
+    </ion-item>
+    <ion-item class="item-accordion" ng-show="isGroupShown(dia)">
+    <ritmos mpr-event="getRitmo" mpr-click="dia.treino" class="ritmosDir"></ritmos>
+</ion-item>
+<!--  .replace(regex_span,'') -->
+</n>
+<n ng-if="dia.ativar !== 'dia'">
+    <ion-item id="{{$index}}" class="item-stable" ng-click="toggleGroup(false)" ng-class="{active: isGroupShown(dia)}" class="false">
+    <i id="{{$index}}"class="icon" ng-class="isGroupShown(dia) ? 'ion-minus' : 'ion-plus'"></i>&nbsp;{{dia.name}} - {{dia.data}}
+</ion-item>
+<ion-item class="item-accordion" ng-show="isGroupShown(dia)"><p ng-bind-html="dia.treino | trustAsHtml"> </p></ion-item>
+</n>
+</div>
+</ion-list>
+<div class="date"> Planilha criada em {{datecriacao.replace(regex_date,' ')}} <span href="javascript:void(0)" ng-click="doAtualiza()"> Atualizar </span> </div>
+<div class="carregando"><img src="img/img-loading.gif"/></div>
+</ion-slide>
+</ion-slide-box>
+
+
+<ion-slide-box on-slide-changed="slideHasChanged($index)"  ng-if="show2">
+<ion-slide ng-repeat="semana in semanasAnteriores">
+<div class="arrows">
+    <span data-ng-show="$index > 0" ng-click="previousSlide()"><img src='img/left-white.png' class="left"/></span>
+    <span data-ng-show="$index < 3" ng-click="nextSlide()"><img src='img/right.png' class="right"/></span>
+</div>
+<h3>Semana {{$index+1}}</h3>
+<ion-list>
+<div ng-repeat="dia in semana" class="{{dia.ativar}}">
+    <n ng-if="dia.ativar === 'dia'">
+        <ion-item id="{{$index}}" class="item-stable" ng-click="toggleGroup(dia)" ng-class="{active: isGroupShown(dia)}" class="false" onClick="abrir(this.id)">
+        <i class="icon" ng-class="isGroupShown(dia) ? 'ion-minus' : 'ion-chevron-down'"></i>&nbsp;
+        {{dia.name}} - {{dia.data}}
+    </ion-item>
+    <ion-item class="item-accordion" ng-show="isGroupShown(dia)">
+    <p ng-bind-html="dia.treino | trustAsHtml"> </p>
+</ion-item>
+<!--  .replace(regex_span,'') -->
+</n>
+
+<n ng-if="dia.ativar !== 'dia'">
+    <ion-item id="{{$index}}" class="item-stable" ng-click="toggleGroup(false)" ng-class="{active: isGroupShown(dia)}" class="false">
+    <i id="{{$index}}"class="icon" ng-class="isGroupShown(dia) ? 'ion-minus' : 'ion-plus'"></i>&nbsp;{{dia.name}} - {{dia.data}}
+</ion-item>
+<ion-item class="item-accordion" ng-show="isGroupShown(dia)"><p ng-bind-html="dia.treino | trustAsHtml"> </p></ion-item>
+</n>
+</div>
+</ion-list>
+<!-- <div class="date"> Planilha criada em {{datecriacao.replace(regex_date,' ')}} <span href="javascript:void(0)" ng-click="doAtualiza()"> Atualizar </span> </div> -->
+<div class="carregando"><img src="img/img-loading.gif"/></div>
+</ion-slide>
+</ion-slide-box>
+
+
+
+
+</ion-content>
+</ion-view>

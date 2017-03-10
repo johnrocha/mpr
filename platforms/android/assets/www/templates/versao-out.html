@@ -1,0 +1,54 @@
+<ion-view title="<img src='img/flat-design/logos/logo-out.png'/>" hide-back-button="true">
+<meta name="format-detection" content="telephone=no">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left"class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
+    <ion-content class="has-header informacoes">
+        <div class="header-flat">
+            <a href="javascript:history.back(1)" class="voltar"><img src="img/flat-design/icons/arrow-left.png"></a>
+            <div class="titulo">
+                <img src="img/flat-design/icons/icon-information.png" class="icon-img"> 
+                <h1>Sobre o APP</h1>
+            </div>
+        </div>
+        <div class="list">
+            <div class="item">
+                <h3>Versão do APP: <span>{{appVersion}}</span> </h3>
+                
+            </div>
+
+            <div class="item">
+                <h3>Sistema Operacional: <span>{{logFactory.platform}} {{logFactory.osVersion}}</span></h3>
+            </div>
+
+            <div class="item">
+                <h3>COD. do dispositivo: <span>{{logFactory.model}}</span></h3>
+            </div>
+
+            <div class="item">
+                <h3>UUID: <span>{{logFactory.UUID}} </span></h3>
+            </div>
+
+            <div class="item">
+                <h3>{{dataAtual}}</h3>
+            </div>
+
+            <div class="item">
+                <h3>{{usuario}}</h3>
+            </div>
+
+            <div class="item">
+                <h3>Atualização Planilha: <span> {{dtAtualizacao}}</span> </h3>
+            </div>
+
+            <div class="item">
+                <h3>Geolocalização: <span> {{posicao.lat}}/{{posicao.lng}}</span></h3>
+            </div>
+
+            <div class="item desenvolvimento">
+                <h3>Desenvolvido por: <a ng-clicK="abrirSite()"><img src="img/logo-mobint.jpg" ></a></h3>
+                
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

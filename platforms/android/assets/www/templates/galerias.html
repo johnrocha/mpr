@@ -1,0 +1,28 @@
+<ion-view title="" hide-back-button="true">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left"class="button button-icon icon ion-navicon"></button>
+        <div class="button button-clear hdr-logo"><img src='img/logompr_v2.png'/></div>
+        <div class="button button-clear tit_logado">{{nomeUsuario}}</div>
+    </ion-nav-buttons>
+    <ion-content class="has-header fotos">
+        <div class="header-flat">
+            <a href="javascript:history.back(1)" class="voltar"><img src='img/flat-design/icons/arrow-left.png'/> </a>
+            <div class="titulo">
+                <img src='img/flat-design/icons/icon-fotos.png' class="icon-img"/> 
+                <h1>Fotos</h1>
+            </div>
+        </div>
+        <div class="gallery-photos">
+            <div class="col-50" ng-repeat="galeria in galerias">
+                <a class="item item-thumbnail-left" href="#/app/fotos?id={{$index}}">
+                <img ng-src="{{galeria.fotos[0].foto_img}}">
+                <span> {{galeria.galeria_titulo}} <br/>
+                <small>
+                {{galeria.galeria_data_evento.replace(" 00:00:00","")}}
+                </small>
+                </span>
+                </a>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

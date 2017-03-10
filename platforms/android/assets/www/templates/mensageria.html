@@ -1,0 +1,73 @@
+<a class="logout" href="{{url}}"> <img src="img/logout.png"/></a>
+<ion-view title="" hide-back-button="true">
+<ion-nav-buttons side="left">
+<button menu-toggle="left"class="button button-icon icon ion-navicon"></button>
+<div class="button button-clear hdr-logo"><img src='img/logompr_v2.png'/></div>
+<div class="button button-clear tit_logado">{{nomeUsuario}}</div>
+</ion-nav-buttons>
+<ion-content class="has-header mensageria clearfix">
+    <div class="header-flat">
+        <a href="" ng-click="voltar()" class="voltar"><img src='img/flat-design/icons/arrow-left.png'/> </a>
+        <div class="titulo">
+            <img src='img/flat-design/icons/icon-mensagem.png' style="margin-top: 3px;" class="icon-img"/> 
+            <h1>Fale com o Prof.</h1>
+        </div>
+    </div>
+
+    <!-- .pag-caixa-de-entrada -->
+    <section class="pag-caixa-de-entrada" ng-show="mostra.pagCaixaDeEntrada">
+        <a href="" class="bt-escrever-msg" ng-click="mostraPag('pagNovaMsg');">Escrever mensagem</a>
+
+        <article class="msg" ng-click="mostraPag('pagMsg', $index)" ng-repeat="msg in user.mensagens" ng-class="{ 'lida': +msg.lida }">
+            <h2>{{ msg.remetentes }} <span class="data">{{ msg.dataFormatada }}</span></h2>
+            <p class="texto-msg">{{ msg.mensagem.length ? msg.mensagem : msg.assunto }}</p>
+        </article>
+    </section>
+    <!-- </ .pag-caixa-de-entrada -->
+
+    <!-- .pag-nova-msg -->
+    <section class="pag-nova-msg" ng-show="mostra.pagNovaMsg">
+        <!-- .conteiner-destinatario -->
+        <div class="conteiner-destinatario">
+            <label class="label" ng-class="{'muitos-destinatarios': nmDestinatarios.length > 2}">Para: 
+                <span class="nm-destinatarios" ng-show="nmDestinatarios.length">
+                    <span class="nm-destinatario" ng-repeat="d in nmDestinatarios" ng-click="removeNmDestinatario(d, $index)" ng-class="{'invalido': d.invalido}">{{ d.user_name ? d.user_name : d.user_email }}</span>
+                </span>
+
+                <input type="text" class="text" ng-model="nmDestinatario.valor" ng-focus="focusNmDestinatario()" ng-blur="blurNmDestinatario();">
+            </label>
+
+            <!-- .lista-destinatarios -->
+            <ul class="lista-destinatarios" ng-show="mostraListaDestinatarios">
+                <li ng-repeat="d in destinatarios" ng-click="toggleDestinatario(d, $index)" ng-class="{'selecionado': d.selecionado}">{{ d.user_name }}</li>
+            </ul>
+            <!-- </ .lista-destinatarios -->
+        </div>
+        <!-- </ .conteiner-destinatario -->
+
+        <label class="label">Assunto: <input type="text" ng-model="nmAssunto.valor" class="text"></label>
+
+        <textarea ng-model="nmMensagem.valor" placeholder="Escrever mensagem"></textarea>
+
+        <button type="submit" ng-click="nmEnviar()">Enviar</button>
+    </section>
+    <!-- </ .pag-nova-msg -->
+
+    <!-- .pag-msg -->
+    <section class="pag-msg" ng-show="mostra.pagMsg">
+        <p class="label">De: <span class="text">{{ msg.remetentes }}</span></p>
+        <p class="label">Assunto: <span class="text">{{ msg.assunto }}</span></p>
+
+        <article class="msg"><!-- ng-class="{ 'destinatario':  }" -->
+            <div class="texto-msg"> {{ msg.mensagem }} </div>
+            <span class="data">{{ msg.dataFormatada }}</span>
+        </article>
+
+        <textarea ng-model="mMensagem.valor" placeholder="Escrever mensagem"></textarea>
+
+        <button type="submit" ng-click="mEnviar()">Enviar</button>
+
+    </section>
+    <!-- </ .pag-msg -->
+</ion-content>
+</ion-view>

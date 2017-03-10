@@ -1,0 +1,61 @@
+<a class="logout" href="{{url}}"> <img src="img/logout.png"/></a>
+<ion-view title="" hide-back-button="true">
+<ion-nav-buttons side="left">
+<button menu-toggle="left"class="button button-icon icon ion-navicon"></button>
+<div class="button button-clear hdr-logo"><img src='img/logompr_v2.png'/></div>
+<div class="button button-clear tit_logado">{{nomeUsuario}}</div>
+</ion-nav-buttons>
+<ion-content class="has-header ritmos">
+<div class="header-flat">
+    <a href="javascript:history.back(1)" class="voltar"><img src='img/flat-design/icons/arrow-left.png'/> </a>
+    <div class="titulo">
+        <img src='img/flat-design/icons/icon-ritmo-interna.png' class="icon-img"/> 
+        <h1>Ritmos</h1>
+    </div>
+</div>
+
+    <ion-list>
+
+<!--     <div class="row">
+
+        <div class="cow">
+            <div class="item item-input item-select">
+            <h4 class="selectTit">Modalidades:</h4>
+                <select ng-model="myMod">
+                 <option ng-selected="true">Todas</option>
+               
+                   
+                    <option ng-repeat="post in posts">{{post.modalidade}}</option>
+                </select>
+            </div>
+
+        </div>
+    </div> -->
+
+    <div class="modalidadesRitmos">  
+        <a href="" ng-click="alteraModalidadeRitmo(1)" ng-class="{'active':show=='Corrida'}">Corrida</a>
+        <a href="" ng-click="alteraModalidadeRitmo(2)" ng-class="{'active':show=='Ciclismo'}" ng-if{}>Ciclismo</a>
+        <a href="" ng-click="alteraModalidadeRitmo(3)" ng-class="{'active':show=='Natação'}">Natação</a>
+    </div>
+    <div ng-repeat="post in posts"  ng-if="post.modalidade == show" class="itensprovas">
+<!--     <div class="item tituloMolidade">
+        <h1>{{post.modalidade}}</h1>
+    </div> -->
+    <div ng-bind-html="cms.ritmosEscolhidos">
+       
+    </div>
+   <!--  <div ng-repeat="ritmo in post.ritmos"> 
+    {{posts.ritmos}}
+    <div class="list">
+        <div class="item">
+            <h2 ng-bind-html="ritmo.legenda | trustAsHtml"></h2>
+            <span>{{ritmo.tempo}} <a ng-if="post.modalidade == 'Corrida'">min/km</a><a ng-if="post.modalidade == 'Natação'">min/100m</a><a ng-if="post.modalidade == 'Ciclismo'">km/h</a></span>
+            <smart><a ng-if="post.modalidade != 'Ciclismo'">{{ritmo.velocidade}} <a ng-if="post.modalidade != 'Natação'">km/h</a></a></smart>
+        </div>
+    </div> -->
+</div>
+</div>
+</ion-list>
+
+</ion-content>
+</ion-view>

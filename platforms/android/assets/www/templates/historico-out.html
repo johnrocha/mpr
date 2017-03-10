@@ -1,0 +1,35 @@
+<a class="logout" href="{{url}}"> <img src="img/logout.png" /></a>
+<ion-view title="" hide-back-button="true">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+        <div class="button button-clear hdr-logo"><img src='img/logompr_v2.png' /></div>
+        <!-- <div class="button button-clear tit_logado">{{usuario}}</div> -->
+    </ion-nav-buttons>
+    <ion-content class="has-header ritmos">
+        <div class="header-flat">
+            <a href="javascript:history.back(1)" class="voltar"><img src='img/flat-design/icons/arrow-left.png' /> </a>
+            <div class="titulo">
+                <img src='img/icon_historico.png' class="icon-img" />
+                <h1>Histórico Cronôm.</h1>
+            </div>
+        </div>
+        <ion-list>
+            <div ng-repeat="t in treinos">
+                <div class="histData">{{formataData(t.time)}}</div>
+                <div ng-repeat="laps in t.treino.slice().reverse()">
+                    <div class="histLaps">
+                        <div class="lapsNum">{{laps.num}}</div>
+                        <div class="lapsTempo">{{laps.tempo.hours}}:{{laps.tempo.min}}:{{laps.tempo.seg}}</div>
+                        <div class="lapsDist">{{laps.dist}}Km</div>
+                    </div>
+                </div>
+                <div class="histTotal">
+                    <div class="totLaps">T</div>
+                    <div class="totTempo">{{t.tempoTotal}}</div>
+                    <div class="totDist">{{t.distanciaTotal}}</div>
+                </div>
+            </div>
+        </ion-list>
+
+    </ion-content>
+</ion-view>

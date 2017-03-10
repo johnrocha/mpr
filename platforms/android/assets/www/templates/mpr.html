@@ -1,0 +1,23 @@
+
+
+<script>
+$(function() {
+$('.fundoinicio').css({'background-size': (+ 114 - (screen.width/70)) + '%'})
+});
+</script>
+
+<div class="modal nao-logado">
+    <ion-content scroll="false" class="telainicio">
+        <img src='img/flat-design/logos/logo-mpr.png'/>
+        <a class="link-login" href="#/app-out/login">Entrar</a>
+        <div class="list listout" ng-style="{height: theHeight() + 'px'}">
+            <div class="row"><ion-item nav-clear menu-close ng-href="#/app-out/locaisdetreino"><img src='img/flat-design/icons/icon-pin.png'/>Locais de Treino</ion-item></div>
+            <div class="row"><ion-item nav-clear menu-close ng-href="#/app-out/calculadora"><img src='img/flat-design/icons/icon-calc.png'/>Calculadora</ion-item></div>
+            <div class="row"><ion-item nav-clear menu-close ng-href="#/app-out/calendariodeprovas"><img src='img/flat-design/icons/icon-calendar.png'/>Datas de Provas</ion-item></div>
+            <div class="row"><ion-item nav-clear menu-close ng-href="#/app-out/cronometro"><img src='img/icon_cron_180.png' class="cronoListOut" style="padding: 2px"/><span class="inItems">Cronômetro</span></ion-item></div>
+            <div class="row"><ion-item nav-clear menu-close ng-href="#/app-out/sobreampr"><img src='img/flat-design/icons/icon-information.png'/>Sobre a MPR</ion-item></div>
+        </div> 
+    </ion-content>
+</div>
+<div class="bg-blur fundoinicio"></div>
+<style>.nav-title-slide-ios7{visibility: hidden !important;}</style>

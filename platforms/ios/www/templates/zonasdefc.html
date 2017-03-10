@@ -1,0 +1,25 @@
+<a class="logout" href="{{url}}"> <img src="img/logout.png"/></a>
+<ion-view title="" hide-back-button="true">
+	<ion-nav-buttons side="left">
+		<button menu-toggle="left"class="button button-icon icon ion-navicon"></button>
+		<div class="button button-clear hdr-logo"><img src='img/logompr_v2.png'/></div>
+		<div class="button button-clear tit_logado">{{nomeUsuario}}</div>
+	</ion-nav-buttons>
+	<ion-content class="has-header fc">
+		<div class="header-flat"> 
+			<a href="javascript:history.back(1)" class="voltar"><img src='img/flat-design/icons/arrow-left.png'/> </a>
+			<div class="titulo">
+				<img src='img/flat-design/icons/icon-fc-interna.png' class="icon-img"/> 
+				<h1>Zonas de F.C.</h1> 
+			</div>
+		</div>
+		<ion-list>
+			<div>
+				<div class="item" ng-repeat="f in fc">
+					<h2>{{f.intensidade.ds_intensidade}}</h2>
+					<span>{{f.intensidade.ini_fc}} bpm - {{f.intensidade.fim_fc}} bpm</span>
+				</div>
+			</div>
+		</ion-list>
+	</ion-content>
+</ion-view>

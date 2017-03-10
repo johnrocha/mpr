@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "E43843F2551FF5C3A4695F5684E88F1C6712CC5D",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "E43843F2551FF5C3A4695F5684E88F1C6712CC5D" : 0,
+    "04C7061E51D0F3911462DDFA2E61959E40F77DF3" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "4CC2DB29-C4CC-4A27-8FB2-E29E1CD5C416",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "E43843F2551FF5C3A4695F5684E88F1C6712CC5D" : "mpr-app\/",
+    "04C7061E51D0F3911462DDFA2E61959E40F77DF3" : ""
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "MPR",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "platforms\/ios\/MPR.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/bitbucket.org\/edson_c\/partyu_app_pv.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "04C7061E51D0F3911462DDFA2E61959E40F77DF3"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/bitbucket.org\/mobint\/mpr-app.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "E43843F2551FF5C3A4695F5684E88F1C6712CC5D"
+    }
+  ]
+}

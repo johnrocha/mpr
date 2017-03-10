@@ -1,0 +1,27 @@
+<div class="modal login">
+    <ion-header-bar>
+        <h1 class="title">Login</h1>
+        <div class="buttons">
+            <a href="#/app-out/inicio" class="button button-clear menu-close">Voltar</a>
+        </div>
+    </ion-header-bar>
+    <ion-content>
+        <form ng-submit="doLogin()" id="IdForm" name="loginForm">
+            <div class="list">
+                <label class="item item-input">
+                <span class="input-label">E-mail:</span>
+                <input type="email" ng-model="loginData.username">
+                </label>
+                <label class="item item-input">
+                <span class="input-label">Senha:</span>
+                <input type="password" ng-model="loginData.password">
+                </label>
+                <br>
+                <span class="erroulogin">Usuário ou senha incorretos.</span>
+                <span class="seminternet">É necessário conectar-se a internet.</span>
+                <button class="button button-block button-positive" type="submit" ng-click="loginForm(idForm,loginData)">Entrar</button>
+            </div>
+        </form>
+        <div class="carregando"><img src="img/img-loading.gif"/></div>
+    </ion-content>
+</div>

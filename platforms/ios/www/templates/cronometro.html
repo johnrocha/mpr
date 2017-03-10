@@ -1,0 +1,57 @@
+<div class="bar bar-header crono">
+<a href="#/app/inicio" class="button button-clear ion-chevron-left" style="font-size:1.6em; color:#ebb42f; width:35px;"></a>
+<div class="yLogo"><img src='img/Logo_amarelo.png'/></div>
+<div class="titCrono">{{hoje}}<br/>{{nomeUsuario}}</div>
+</div>
+<ion-view title="" hide-back-button="true">
+<ion-nav-buttons side="left" class="cronometroNav">
+<button menu-toggle="left"class="button button-icon icon ion-navicon"></button>
+<div class="button button-clear hdr-logo"><img src='img/logompr_v2.png'/></div>
+<div class="button button-clear tit_logado">{{usuario}}</div>
+
+</ion-nav-buttons>
+
+<ion-content class="has-header cronometro" ng-show="true" ng-class="{'correndo': correndo}">
+    <div class="playTempo" ng-class="{'yellowBG' : !iniciado || !correndo}">
+      <div class="playT" ng-show="iniciado">
+
+        <!-- <span class="pt-item">T</span> <span class="pt-item">{{calculaTempo()}}</span> <span class="pt-item">{{distPercorrida.total.abreviada}}km</span>
+ -->
+        <span class="pt-item pt-item-fonte">Total</span> <span class="pt-item pt-item-fonte2">{{calculaTempo()}}</span> <span class="pt-item"></span>
+
+      </div>
+
+      <div class="timerLap" ng-show="iniciado">{{lapAtual}}</div>
+
+      <div class="timerCont">
+          <!-- <timer class="timer" start-time="1447799517136" autostart="false" millis="teste.millis" interval="1"><span ng-show="showHour()">{{hhours}}:</span>{{mminutes}}:{{sseconds}}:{{+('' + millis).substr(-3, 1)}}</timer>  -->
+
+          <timer class="timer"  autostart="false" millis="teste.millis" interval="1"><span ng-show="showHour()">{{hhours}}:</span>{{mminutes}}:{{sseconds}}:{{+('' + millis).substr(-3, 1)}}</timer>
+
+          <div class="distance">
+              <!-- <div>{{minKmLap}} <br/> min/km</div> -->
+              <div>{{distPercorrida.lap.abreviada}} km</div> 
+          </div>
+      </div>
+    </div>
+
+    <div class="playButtons">
+       <div class="playBtn" ng-click="play()" ng-show="iniciado && !correndo"></div>
+       <div class="pauseBtn" ng-click="pause()" ng-show="correndo"></div>
+       <div class="lapBtn" ng-click="novaLap(tempo)" ng-show="correndo">LAP</div>
+       <div class="startBtn" ng-click="start()" ng-show="!iniciado">START</div>
+
+        <!-- <button onclick="window.plugins.socialsharing.shareViaFacebook('Message via Facebook',null /* img */, null /* url */, function() {console.log('share ok')}, function(errormsg){alert(errormsg)})">msg via Facebook (with errcallback)</button> -->
+      
+       <div class="fimBtn" ng-click="confirmStop();" on-touch="mdFimBtn = true;" on-release="mdFimBtn = false;" ng-show="iniciado && !correndo" ng-class="{'active': mdFimBtn}">FIM</div>
+    </div>
+    <div class="playLaps" ng-show="iniciado" ng-repeat="lap in laps">
+      <div class="playLap">
+          <div class="pl-item">{{lap.num}}</div>
+          <div class="pl-item">{{+lap.tempo.hours > 0 ? lap.tempo.hours + ':' : ''}}{{lap.tempo.min}}:{{lap.tempo.seg}}:{{lap.tempo.millis}}</div>
+          <div class="pl-item">{{lap.dist}}km</div>
+      </div>
+    </div>
+    <div class="btnHistorico" ng-show="!iniciado"><a href="#/app/historico" class="historico">Histórico</a></div>
+</ion-content>
+</ion-view>

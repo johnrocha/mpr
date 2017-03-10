@@ -1,0 +1,25 @@
+<ion-view title="" hide-back-button="true">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left"class="button button-icon icon ion-navicon"></button>
+        <div class="button button-clear hdr-logo"><img src='img/logompr_v2.png'/></div>
+        <div class="button button-clear tit_logado">{{nomeUsuario}}</div>
+    </ion-nav-buttons>
+
+    <div class="ionic-bg-color"></div>
+    <ion-content class="telainicio" scroll="false">
+        <div class="list inicioLog">
+            <div class="row">
+                <ion-item class="highlight">
+                    <div class="bg-today">{{datadia}}<br><small>{{datames}}</small></div>
+                    <div class="plain"><p class="posttreino" ng-if="posts !== ''" ng-bind-html="posts | trustAsHtml"></p></div>
+                </ion-item>
+            </div>
+            <div class="row"><ion-item href="#/app/planilha"><img src='img/flat-design/icons/icon-planilha-interna.png'/><span class="inItems">Planilha de Treino</span></ion-item></div>
+            <div class="row"><ion-item href="#/app/feedbackdetreino"><img src='img/flat-design/icons/icon-feedback.png'/><span class="inItems">Feedback do Treino</span></ion-item></div> 
+            <div class="row"><ion-item href="#/app/ritmosdetreino"><img src='img/flat-design/icons/icon-ritmo-interna.png'/><span class="inItems">Ritmos</span></ion-item></div>
+            <div class="row"><ion-item href="#/app/zonasdefc"><img src='img/flat-design/icons/icon-fc-interna.png'/><span class="inItems">Zonas de F.C.</span></ion-item></div>
+            <div class="row"><ion-item href="#/app/cronometro"><img src='img/Icone_Cronometro.png' class="cronoList"/><span class="inItems">Cronômetro</span></ion-item></div>
+            <div class="row"><ion-item href="#/app/mensageria"><img src='img/flat-design/icons/icon-mensagem.png' class="mensList"/><span class="inItems">Fale com o Prof.</span></ion-item></div>
+        </div>
+    </ion-content>
+</ion-view>

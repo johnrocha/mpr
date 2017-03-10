@@ -1,0 +1,624 @@
+<ion-view title="<img src='img/logompr_v2.png'/>" hide-back-button="true">
+<script src="js/jquery.mask.min.js"></script>
+
+<script>
+	var intervalo
+	$(document).ready(function() {
+		//cria as mascaras para todos os inputs
+		//$(".input-tempo").mask("99:99:99"); 
+		//$(".input-pace").mask("99:999"); 
+		//$(".input-velocidade").mask("99,99");
+		//$(".input-distancia").mask("999999");
+		//função executada periodicamente para verificar quais campos foram preenchidos corretamente serão acesos/apagados
+		intervalo = setInterval(function(){
+			if (verificar(document.forms['form1']['Pace1'])||verificar(document.forms['form1']['Velocidade1'])){
+				$(".caixa1").addClass('selecionarinput');
+				$(".caixa2").addClass('selecionarinput');
+			}else{
+				$(".caixa1").removeClass('selecionarinput');
+				$(".caixa2").removeClass('selecionarinput');
+			}
+			if (verificar(document.forms['form1']['Distancia'])){
+				$(".caixa3").addClass('selecionarinput');
+			}else{
+				$(".caixa3").removeClass('selecionarinput');
+			}
+			if (verificar(document.forms['form1']['Tempo'])){
+				$(".caixa4").addClass('selecionarinput');
+			}else{
+				$(".caixa4").removeClass('selecionarinput');
+			}
+			if (verificar(document.forms['form2']['Pace2'])){
+				$(".caixaa").addClass('selecionarinput');
+			}else{
+				$(".caixaa").removeClass('selecionarinput');
+			}
+			if (verificar(document.forms['form2']['Velocidade2'])){
+				$(".caixab").addClass('selecionarinput');
+			}else{
+				$(".caixab").removeClass('selecionarinput');
+			}
+		}, 20)
+	});
+</script>
+
+<ion-nav-buttons side="left">
+<button menu-toggle="left"class="button button-icon icon ion-navicon"></button>
+</ion-nav-buttons>
+<ion-content class="has-header calculadora">
+
+<div class="header-flat"> 
+	<a href="javascript:history.back(1)" onclick="clearInterval(intervalo);" class="voltar"><img src='img/flat-design/icons/arrow-left.png'/> </a>
+	<div class="titulo">
+		<img src='img/flat-design/icons/icon-calculadora-interna.png' class="icon-img"/> 
+		<h1>Calculadora</h1> 
+	</div>
+</div>
+
+<div class="barra">
+
+	<span>
+		Tempo • Distância • Ritmo
+	</span>
+
+</div>
+
+<form class="form1" name="form1" onsubmit="calc()">
+	<div class="row">
+		<div class="caixa caixa1" id="caixa1">
+			<div class="col">
+				<div class="row">
+					<h3>Pace min/km</h3>
+				</div>
+				<div class="row">
+					<div class="col">
+						<input type="tel" name="Pace1" oninput="verificaForm1()" onchange="verificaForm1()" class="input-pace"><span>mm:ss</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="caixa caixa3">
+			<div class="col">
+				<div class="row">
+					<h3>Distância</h3>
+				</div>
+				<div class="row">
+					<div class="col">
+						<input type="tel" name="Distancia" oninput="verificaForm1()" onchange="verificaForm1()" class="input-distancia"><span>metros</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="caixa caixa2">
+			<div class="col">
+				<div class="row">
+					<h3>Velocidade</h3>
+				</div>
+				<div class="row">
+					<div class="col">
+						<input type="tel" name="Velocidade1" oninput="verificaForm1()" onchange="verificaForm1()" class="input-velocidade"><span>km/h</span>
+					</div>
+
+				</div>
+			</div>
+		</div>
+		<div class="caixa caixa4">
+			<div class="col">
+				<div class="row">
+					<h3>Tempo</h3>
+				</div>
+				<div class="row">
+					<div class="col">
+						<input type="tel" name="Tempo" oninput="verificaForm1()" onchange="verificaForm1()" class="input-tempo"><span>hh:mm:ss</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<div class="botoes">
+	<div class="row">
+			<div class="col">
+				<button class="button button-block button-positive button-black limpar" id="limpar1" type="reset" onclick="limpar(1)" disabled>
+					Limpar
+				</button>
+			</div>
+			<div class="col col-75">
+				<button class="button button-block button-positive button-black calcular" id="submit1" type="submit" disabled >
+					Calcular
+				</button>
+			</div>
+	</div>
+</div>
+
+</form>
+
+<div class="barra">
+	<span>
+		Conversão Pace • Velocidade
+	</span>
+</div>
+<form class="form2" name="form2" onsubmit="converter()">
+	<div class="row">
+		<div class="caixa caixaa">
+			<div class="col">
+				<div class="row">
+					<h3>Pace </h3>
+				</div>
+				<div class="row">
+					<div class="col">
+						<input type="tel" name="Pace2" oninput="verificaForm2()" class="input-pace"><span>min/km</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="caixa caixab">
+			<div class="col">
+				<div class="row">
+					<h3>Velocidade</h3>
+				</div>
+				<div class="row">
+					<div class="col">
+						<input type="tel" name="Velocidade2" oninput="verificaForm2()" class="input-velocidade"><span>km/h</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<div class="botoes">
+	<div class="row">
+			<div class="col">
+				<button class="button button-block button-positive button-black limpar" id='limpar2' type="reset" disabled onclick="limpar(2)">
+					Limpar
+				</button>
+			</div>
+			<div class="col col-75">
+				<button class="button button-block button-positive button-black calcular" id='submit2' type="submit" disabled>
+					Calcular
+				</button>
+			</div>
+	</div>
+</div>
+</form> 
+<script>
+	//valida os valores das inputs, verificando se estao corretamente digitados para serem calculados
+	function verificar(objeto){
+		var name = objeto.name;
+		var val = (objeto.value).toString();
+		var valor = val.replace(/[^0-9]/g,"").length
+		var ret = false;
+		if(name=='Pace1'||name=='Pace2'){
+			val = val.replace(/[^0-9]/g,"");
+			if(val=='0'||val=='00'){val=''}
+			if(name=='Pace1'){Pace1 = false; }else{Pace2 = false; }
+			if(val!=0){
+				if(val.substr(1)==''){
+					val = '0:0'.concat(val);
+				}else if(val.substr(2)==''){
+					val = ('0:'+val);
+				}else if(val.substr(3)==''){
+					val = val.substr(0,1)+':'+val.substr(1);
+				}else{
+					val=val.substr(0);
+					if(val.substr(0,2)=='00'||val.substr(0,1)==0){
+						val = val.substr(1,1)+':'+val.substr(2);
+					}else{
+						val = val.split("").reverse().join("");
+						val = val.substr(2).split("").reverse().join("")+':'+val.substr(0,2).split("").reverse().join("");
+					}
+				}
+				if(val.substr(val.indexOf(':')+1,1)<6){
+					ret=true;
+					if(name=='Pace1'){Pace1 = true; }else{Pace2 = true; }		
+				}
+			}
+			document.forms['form'+name.substr(4)][name].value = val;
+		}else if(name=='Tempo'){
+			val = val.replace(/[^0-9]/g,"");
+			Temp = false;
+			if(val=='00'||val==''){val=''}
+			if(val=='000000'){val='0'}
+			if(val!=0){
+				if(val.substr(1)==''){
+					val = '0:0'.concat(val);
+				}else if(val.substr(2)==''){
+					val = ('0:'+val);
+				}else if(val.substr(3)==''){
+					val = val.substr(0,1)+':'+val.substr(1);
+				}else if(val.substr(4)==''){
+					val=val.substr(0,4);
+					if(val.substr(0,2)=='00'||val.substr(0,1)==0){
+						val = val.substr(1,1)+':'+val.substr(2);
+					}else{
+						val = val.substr(0,2)+':'+val.substr(2);
+					}
+				}else if(val.substr(5)==''){
+					val = val.substr(0,1)+':'+val.substr(1,2)+':'+val.substr(3);
+				}else{
+					val = val.substr(0,2)+':'+val.substr(2,2)+':'+val.substr(4,2);
+				}
+				if(val.substr(5)==''&&val.substr(4)!=''){
+					if(val.substr(0,1)<6&&val.substr(val.indexOf(':')+1,1)<6){
+						ret=true;
+					}
+				}else{
+					if(val.substr(val.indexOf(':')+1,1)<6&&val.substr(val.lastIndexOf(':')+1,1)<6){
+						ret=true;
+					}
+				}
+			}
+			document.forms['form1']['Tempo'].value = val;
+		}else if(name=='Distancia'){
+			Dist=false;
+			val=recolherDistancia();
+			document.forms['form1']['Distancia'].value = val.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.");
+			if(val!=0){ret=true;}
+		}else{
+			val = val.replace(/[^0-9]/g,"");
+			if(name=='Velo1'){Velo1 = false; }else{Velo2 = false;}
+			if(val=='00'){val = '0'}
+			if(val!=0){
+				if(val.substr(1)==''){
+					val = '0,'.concat(val);
+				}else{
+					if(val.substr(2)==''){
+						val = (val.substr(0,1)+','+val.substr(1));
+					}else{
+						if(val.substr(0,1)==0){
+							val = (val.substr(1,1)+','+val.substr(2,1));
+						}else{
+							val = val.substr(0,2)+','+val.substr(2,1);
+						}
+					}
+				}
+				ret=true
+				if(name=='Velo1'){Velo1 = true;}else{Velo2 = true}
+			}
+			document.forms['form'+name.substr(10,1)]['Velocidade'+name.substr(10,1)].value = val;
+		}
+		return ret;
+	}
+	//execucao da funcao calcular a cada clique no botao submit
+	$('#submit1').click( function (e){
+		e.preventDefault();
+        calc();
+		document.getElementById("submit1").disabled=true;
+	});
+	//atribui 0 para os campos vazios
+	function is0(n){
+		if(isNaN(parseFloat(n.value))){
+			n.value = '';
+			return 0;
+		}else{
+			return parseFloat(n.value);
+		}
+	}
+	//formata os valores numericos
+	function valid(n){
+		if(isNaN(n)||n=='Infinity'){
+			n=0;
+		}else{
+			n=(Math.round(n*100)/100).toString();
+			if (n.substr(-3)=='.00'){
+				n=n.replace('.00','');
+			}
+		}
+		return n;
+	}
+	var caso1;
+	//Verfica quais campos foram preenchidos no primeiro formulario e direciona para uma função da calculadora
+	function verificaForm1(){
+		var Temp = verificarTempo();
+		var Pace = verificarPace(1);
+		var Velo = recolherVelocidade(1)!=0;
+		var Dist = recolherDistancia()!=0;
+		/*
+		console.log('Pace = '+Pace);
+		console.log('Velo = '+Velo);
+		console.log('Dist = '+Dist);
+		console.log('Temp = '+Temp);
+		*/
+		var submit = document.getElementById("submit1");
+		var limpar = document.getElementById("limpar1");
+		//Habilita ou desabilita campos Pace/Velocidade
+		if(document.forms["form1"]["Pace1"].value!=''){
+			document.forms["form1"]["Velocidade1"].disabled = true;
+		}else{
+			document.forms["form1"]["Velocidade1"].disabled = false;
+		}
+		if(document.forms["form1"]["Velocidade1"].value!=''){
+			document.forms["form1"]["Pace1"].disabled = true;
+		}else{
+			document.forms["form1"]["Pace1"].disabled = false;
+		}
+		//habilita/desabilita botao calcular
+		if(!Pace&&!Velo&&Dist&&Temp){
+			caso1='pace';
+			submit.disabled = false;
+			limpar.disabled = false;
+		}else if((Pace||Velo)&&Dist&&!Temp){
+			caso1='tempo';
+			submit.disabled = false;
+			limpar.disabled = false;
+		}else if((Pace||Velo)&&!Dist&&Temp){
+			caso1='distancia';
+			submit.disabled = false;
+			limpar.disabled = false;
+		}else if(!Pace&&!Velo&&!Dist&&!Temp){
+			caso1='nada preenchido';
+			submit.disabled = true;
+			limpar.disabled = true;
+		}else{
+			caso1='algo preenchido';
+			submit.disabled = true;
+			limpar.disabled = false;
+		}
+		//habilita/desabilita botao limpar		
+		if(document.forms["form1"]["Pace1"].value=='' && document.forms["form1"]["Distancia"].value=='' && document.forms["form1"]["Velocidade1"].value=='' && document.forms["form1"]["Tempo"].value==''){
+			limpar.disabled = true;
+		}else{
+			limpar.disabled = false;
+		}
+	}
+	//redirciona os calculos
+	function calc(){
+		if(caso1=='pace'){
+			calcPace();
+		}else if(caso1=='tempo'){
+			calcTempo();
+		}else if(caso1=='distancia'){
+			calcDistancia();
+		}
+	}
+	//caso 1 - distancia + tempo
+	function calcPace(){
+		tempo = recolherTempo();
+		distancia = recolherDistancia();
+		var velocidade = valid((distancia/1000)/(tempo/3600));
+		var pace = valid(60/((distancia/1000)/(tempo/3600)));
+		console.log(pace);
+		if(isNaN(velocidade)){
+			velocidade=0;
+			pace=0;
+		}
+		document.forms['form1']['Pace1'].value = exibirPace(valid(pace));
+		document.forms['form1']['Velocidade1'].value = exibirVelocidade(velocidade);
+		$(".caixa1").addClass('selecionarinput');
+		$(".caixa2").addClass('selecionarinput');
+	}
+	//caso 2 - pace/velocidade + distancia
+	function calcTempo(){
+		var pace=recolherPace(1);
+		var velocidade=recolherVelocidade(1);
+		if (velocidade==0){
+			var tempo = pace*3*(document.forms['form1']['Distancia'].value/50);
+			document.forms['form1']['Velocidade1'].value = exibirVelocidade(60/pace);
+		}else{
+			pace = 60/velocidade;
+			document.forms["form1"]["Pace1"].value=exibirPace(valid(pace));
+		}
+		var tempo = pace*3*(recolherDistancia()/50);
+		//Novo
+		tempo = Math.round(tempo);
+		document.forms['form1']['Tempo'].value = exibirTempo(parseInt(tempo));
+		$(".caixa4").addClass('selecionarinput');
+	}
+	//caso 3 - pace/velocidade + tempo
+	function calcDistancia(){
+		var tempo = recolherTempo();
+		var pace = recolherPace(1);
+		var distancia;
+		var velocidade=recolherVelocidade(1);
+		console.log(tempo);
+		console.log(pace);
+		console.log(velocidade);
+		if (!isNaN(pace)){		
+			distancia = tempo/(pace*0.06);
+			document.forms["form1"]["Velocidade1"].value=exibirVelocidade(60/pace);
+		}else{
+			pace = 60/velocidade;
+			distancia = (velocidade/3.6)*tempo;
+			document.forms["form1"]["Pace1"].value=exibirPace(valid(pace));
+		}
+		document.forms["form1"]["Distancia"].value=Math.ceil(valid(distancia));
+		$(".caixa3").addClass('selecionarinput');
+	}
+	function exibirTempo(t){
+		//transforma um valor de tempo em segundos para os seus valores em hora/minuto/segundo
+		var h = (t-(t%3600))/3600;
+		var m = ((t-(t%60))/60)-(h*60);
+		var s = t-((h*3600)+(m*60));
+		if (h<10) {h='0'.concat(h);}
+		if (m<10) {m='0'.concat(m);}
+		if (s<10) {s='0'.concat(s);}
+		return(h+':'+m+':'+s);
+	}
+	//formata o valor do pace de segundos para minutos/segundos
+	function exibirPace(pace){
+		if (pace.toString().substr(pace.indexOf('.'),1)=='.'){
+			var pacea = (pace.substring(0,(pace.indexOf('.'))));
+			console.log(pacea);
+			if (pacea.substr(1)==''){
+				pacea = '0' + pacea;
+				console.log(pacea);
+			}
+			var paceb = pace.substr(pace.indexOf('.')+1);
+			console.log(paceb);
+			//Metodo antigo
+			//paceb = Math.ceil(paceb*0.6).toString();
+			console.log(parseFloat("0."+paceb));
+			paceb = (parseFloat("0."+paceb)*0.6).toString();
+			paceb = paceb.toString().substr(2,2);
+			console.log(paceb);
+			if (paceb.substr(1)==''){
+				paceb = paceb.concat('0');
+				console.log(paceb);
+			}
+			pace = pacea+':'+paceb;
+			console.log(pace);
+		}else{
+			if(pace.toString().substr(1,1)==''){
+				pace='0'.concat(pace);
+			}
+			pace=pace.concat(':00');
+		}
+		return pace;
+	}
+	function exibirVelocidade(v){
+		v = (Math.round(v*10)/10).toString();
+		if(v.indexOf('.')!=(-1)){
+			var v1 = v.substring(0,v.indexOf('.'));
+			var v2 = v.substring(v.indexOf('.')+1);
+			v = v1+','+v2;
+		}else{
+			v=v.concat(',0');
+		}
+		return v;
+	}
+	//transforma a string do input Tempo para um velor em segundos
+	function recolherTempo(){
+		var t = document.forms["form1"]["Tempo"].value.replace(/[^0-9]/g,'');
+		var h = 0, m = 0, s = 0;
+		if (t==0||isNaN(t)){
+			t=0;
+		}else if (t.substr(3)==''){
+			m = t.substr(0,1);
+			s = t.substr(1);
+		}else if(t.substr(4)==''){
+			m = t.substr(0,2);
+			s = t.substr(2);
+		}else if(t.substr(5)==''){
+			h = t.substr(0,1);
+			m = t.substr(1,2);
+			s = t.substr(3);
+		}else{
+			h = t.substr(0,2);
+			m = t.substr(2,2);
+			s = t.substr(4);
+		}
+		t = (h*3600)+(m*60)+parseInt(s);
+		return t;
+	}
+	function verificarTempo(){
+		var t = document.forms["form1"]["Tempo"].value.replace(/[^0-9]/g,'');
+		if(valid(t)==0){
+			return false;
+		}
+		if (t.substr(3)==''){
+			if(t.substr(0,1)>5){return false}
+		}else if(t.substr(4)==''){
+			if(t.substr(0,1)>5||t.substr(2,1)>5){return false}
+		}else if(t.substr(5)==''){
+			if(t.substr(1,1)>5||t.substr(3,1)>5){return false}
+		}else {
+			if(t.substr(2,1)>5||t.substr(4,1)>5){return false}
+		}
+		return true;
+	}
+	function verificarPace(a){
+		var p = document.forms["form"+a]["Pace"+a].value.replace(/[^0-9]/g,'');
+		if(valid(p)==0){
+			return false;
+		}
+		if (p.substr(2)==''){
+			if(p.substr(0,1)>5){return false}
+		}else if (p.substr(3)==''){
+			if(p.substr(1,1)>5){return false}
+		}else {
+			if (p.substr(2,1)>5){return false}
+			if(p.substr(0,2)=='00'){}else{}
+		}
+		return true;
+	}
+	//transforma a string do input Pace para um valor em segundos
+	function recolherPace(a){
+		var p = document.forms["form"+a]["Pace"+a].value.replace(/[^0-9]/g,'');
+		var m=0;
+		var s=0;
+		if(p.substr(3)==''){
+			m = p.substr(0,1);
+			s = p.substr(1);
+		}else{
+			p = p.split('').reverse().join('');
+			s = p.substr(0,2).split('').reverse().join('');
+			m = p.substr(2).split('').reverse().join('');
+		}
+		p = (parseInt(m) + (s/60));
+		return p;
+	}
+	function recolherVelocidade(a){
+		var v = document.forms["form"+a]['Velocidade'+a].value;
+		if(v.indexOf(',')!=-1){
+			var v1 = v.substring(0,v.indexOf(','));
+			var v2 = v.substring(v.indexOf(',')+1);	
+			if(v2!=0){
+				v = (v1+'.'+v2);
+			}else{
+				v = v1;
+			}
+		}
+		return v;
+	}
+	function recolherDistancia(){
+		return document.forms['form1']['Distancia'].value.replace(/[^0-9]/g,"");
+	}
+	//remove as classes que 'acendem' os campos de preenchimento
+	function limpar(a){
+		setTimeout(function(){ document.getElementById('limpar'+a).disabled=true; if(a=='1'){verificaForm1();}else{verificaForm2()}}, 10);
+		if(a==1){
+			$(".caixa1").removeClass('selecionarinput');
+			$(".caixa2").removeClass('selecionarinput');
+			$(".caixa3").removeClass('selecionarinput');
+			$(".caixa4").removeClass('selecionarinput');
+		}else{
+			$(".caixaa").removeClass('selecionarinput');
+			$(".caixab").removeClass('selecionarinput');
+		}
+	}
+	//verifica quais campos estão preenchidos e atribui quais botoes estao disponiveis no segundo formulario
+	var caso2;
+	function verificaForm2(){
+		var pace = (document.forms["form2"]["Pace2"].value.toString());
+		if ((pace.replace(/[^0-9]/g,"")).substr(2,1)!=''){
+			pace = (pace.replace(/[^0-9]/g,"")).toString().substr(3,1)!='';
+		}else{
+			pace=(pace!='');
+		}
+		var velocidade = recolherVelocidade(2)!=0;
+		var submit = document.getElementById('submit2');
+		var limpar = document.getElementById('limpar2');
+		if(!pace && !velocidade){
+			submit.disabled = true;
+			limpar.disabled = true;
+		}else if(pace && !velocidade){
+			submit.disabled = false;
+			limpar.disabled = false;
+			caso2 = 'toVelocidade';
+		}else if(!pace && velocidade){
+			submit.disabled = false;
+			limpar.disabled = false;
+			caso2 = 'toPace';
+		}else{
+			submit.disabled = true;
+			limpar.disabled = false;
+		}
+	}
+	//converte pace -> velocidade e velocidade -> pace
+	function converter(){
+		var pace = recolherPace(2);
+		var velocidade = recolherVelocidade(2);
+		if(pace.value!='' || velocidade!=''){
+			if(caso2=='toPace'){
+				document.forms['form2']['Pace2'].value = exibirPace(valid(60/velocidade));
+				$(".caixaa").addClass('selecionarinput');
+			}else{
+				document.forms['form2']['Velocidade2'].value = exibirVelocidade(60/pace);
+				$(".caixab").addClass('selecionarinput');
+			}
+			document.getElementById('submit2').disabled = true;
+		}
+	}
+</script>
+</ion-content>
+</ion-view>

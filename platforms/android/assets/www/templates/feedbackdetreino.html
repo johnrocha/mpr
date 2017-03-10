@@ -1,0 +1,61 @@
+
+<a href="#/app-out/inicio" class="logout"> <img src="img/logout.png"></a>
+<ion-view title="" hide-back-button="true">
+<ion-nav-buttons side="left">
+<button menu-toggle="left"class="button button-icon icon ion-navicon"></button>
+<div class="button button-clear hdr-logo"><img src='img/logompr_v2.png'/></div>
+<div class="button button-clear tit_logado">{{nomeUsuario}}</div>
+</ion-nav-buttons>
+<ion-content class="has-header feed">
+
+<div class="header-flat">
+    <a href="javascript:history.back(1)" class="voltar"><img src='img/flat-design/icons/arrow-left.png'/> </a>
+    <div class="titulo">
+        <img src='img/flat-design/icons/icon-feedback.png' class="icon-img"/> 
+        <h1 style="white-space: pre-wrap; font-size:20px; margin-top:5px">Feedback de Treino</h1>
+    </div>
+</div>
+
+<form name="feedback_form" novalidate ng-submit="doFeedback()" id="idForm">
+ <div class="row">
+    <div class="col">
+     <label>Data dd/mm/aa</label>
+     <input type="date" class="data input" id="data" ng-model="feedbackForm.dataTreino" ng-required="true" ng-disabled="{{disable}}">
+ </div>
+ <div class="col">
+    <label>Início hh:mm</label>
+    <input type="time" id="inicio" class="inicio input" ng-required="true" ng-model="feedbackForm.tempInicio" ng-disabled="{{disable}}" ></div>
+</div>
+<div class="row">
+    <div class="col">
+     <label>Descrição do treino</label>
+
+  <label class="item item-input" style="padding: 0;border: none;">
+    <textarea id="descricao" class="input" ng-model="feedbackForm.descricao" ng-disabled="{{disable}}"></textarea>
+  </label>
+ </div>
+</div>
+<div class="row">
+    <div class="col col-75">
+        <label>Duração do treino hh:mm</label>
+        <input type="time" id="duracao" class="input" ng-model="feedbackForm.duracao" ng-required="true" ng-disabled="{{disable}}">
+    </div>
+    <div class="col col-25">
+        <button id='button_calc' class="button button-block button-positive btn-enviar" type="submit" ng-disabled="feedback_form.$invalid" id="botao" {{disable}}> Enviar
+        </button>
+    </div>
+</div>
+
+
+</form>
+<div style="display:none"></div>
+<script>
+  /*$('.input').focus(function(){
+            console.log('abcdefgh');
+            $('#recuo').show();
+        });*/
+</script>
+
+
+</ion-content>
+</ion-view>
